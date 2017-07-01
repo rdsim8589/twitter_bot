@@ -27,5 +27,11 @@ def get_rank_1():
     link = link[0]
     a_tags = link.find_all('a')
     a_tags = a_tags[0]
-    tweet = a_tags.contents[0] + ' : ' + link.get('data-url')
+    title = a_tags.contents[0]
+    if len(title) > 78:
+        title = "Today's top post!"
+    tweet =  title + ' : ' + link.get('data-url')
     return (tweet)
+
+if __name__ == "__main__":
+    print(get_rank_1())
