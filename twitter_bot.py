@@ -16,18 +16,20 @@ def tweet():
     api = tweepy.API(auth)
     while True:
          try:
-             tweet = get_rank_1() + ' /r/programming top post!'
+             tweet = get_rank_1() + ' /r/#programming top post!'
              break
          except:
              time.sleep(random.randint(1, 10))
              pass
     try:
         api.update_status(status=tweet)
-    except:
-        api.update_status(status="Oops, something went wrong. Someone tell my owner!!!")
+    except Exception as e:
+        api.update_status(status=
+                          "Oops, something went wrong. Someone tell my owner!!! Error:{}".
+                          format(e))
 
 if __name__ == "__main__":
-    schedule.every().day.at("9:46").do(tweet)
+    schedule.every().day.at("15:32").do(tweet)
     while True:
         schedule.run_pending()
         time.sleep(1)
